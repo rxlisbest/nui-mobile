@@ -3,11 +3,11 @@ const tsImportPluginFactory = require("ts-import-plugin");
 
 module.exports = {
   parallel: false,
+  lintOnSave: true,
   devServer: {
     open: true,
     port: 3232
   },
-  lintOnSave: true,
   chainWebpack: config => {
     config.module
       .rule('ts')
