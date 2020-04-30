@@ -14,7 +14,7 @@
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <van-field v-model="value" type="password" placeholder="请输入密码" />
+            <n-sms-input></n-sms-input>
           </van-col>
         </van-row>
         <van-row class="login-body-content-button">
@@ -38,6 +38,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Button, Col, Row, Field, Image } from "vant";
+import NSmsInput from "@/components/NSmsInput.vue";
 import Layout from "./components/Layout.vue";
 
 @Component({
@@ -47,11 +48,12 @@ import Layout from "./components/Layout.vue";
     [Row.name]: Row,
     [Field.name]: Field,
     [Image.name]: Image,
+    NSmsInput,
     Layout
   }
 })
-export default class LoginIndex extends Vue {
-  name = "LoginIndex";
+export default class LoginMobile extends Vue {
+  name = "LoginMobile";
 
   data() {
     return {
