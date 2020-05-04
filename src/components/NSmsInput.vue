@@ -2,7 +2,7 @@
   <div class="n-sms-input">
     <van-row gutter="20">
       <van-col :span="15">
-        <van-field v-model="value" placeholder="请输入用户名" />
+        <van-field v-model="input" @input="$emit('input', input)" :placeholder="placeholder" />
       </van-col>
       <van-col :span="9">
         <van-button
@@ -39,6 +39,9 @@ export default class NSmsInput extends Vue {
 
   @Prop() private value!: string;
   @Prop({ default: 60 }) private countdown!: number;
+  @Prop() private placeholder!: string;
+
+  input = this.value;
 
   send() {
     this.sendDisabled = true;

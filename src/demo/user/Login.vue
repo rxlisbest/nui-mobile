@@ -14,20 +14,20 @@
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <n-sms-input></n-sms-input>
+            <van-field v-model="value" type="password" placeholder="请输入密码" />
           </van-col>
         </van-row>
         <van-row class="button">
           <van-col :span="18" :offset="3">
-            <van-button round type="info">默认按钮</van-button>
+            <van-button round type="info" @click="handleSubmit">默认按钮</van-button>
           </van-col>
         </van-row>
         <van-row>
           <van-col :span="9" :offset="3" class="register">
-            <router-link :to="'/'">还没账号，去注册</router-link>
+            <router-link :to="{name: 'Register'}">还没账号，去注册</router-link>
           </van-col>
           <van-col :span="9" class="forget">
-            <router-link :to="'/'">忘记密码</router-link>
+            <router-link :to="{name: 'Login'}">忘记密码</router-link>
           </van-col>
         </van-row>
       </div>
@@ -38,8 +38,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Button, Col, Row, Field, Image } from "vant";
-import NSmsInput from "@/components/NSmsInput.vue";
 import CopyrightLayout from "@/components/CopyrightLayout.vue";
+import { userLogin } from "@/api/demo/user";
 
 @Component({
   components: {
@@ -48,23 +48,29 @@ import CopyrightLayout from "@/components/CopyrightLayout.vue";
     [Row.name]: Row,
     [Field.name]: Field,
     [Image.name]: Image,
-    NSmsInput,
-    CopyrightLayout,
+    CopyrightLayout
   }
 })
 export default class LoginMobile extends Vue {
-  name = "LoginMobile";
+  name = "Login";
 
   data() {
     return {
       value: ""
     };
   }
+
+  handleSubmit() {
+    userLogin({username: '', password: ''}).then(res => {
+      console.log(res)
+    });
+  }
 }
 </script>
 
 <style lang="less" scoped>
 @container: container;
+@page: content;
 
 .@{container} {
   /deep/ &-body {
@@ -75,7 +81,7 @@ export default class LoginMobile extends Vue {
   }
 }
 
-.content {
+.@{page} {
   width: 100%;
   margin-bottom: 30%;
   .logo {

@@ -1,10 +1,8 @@
 import { RouteConfig } from 'vue-router'
-import loginRouter from './login'
-import registerRouter from './register'
+import userRouter from './user'
 
 const routes: Array<RouteConfig> = [
-  ...loginRouter,
-  ...registerRouter,
+  ...userRouter,
 ]
 
 export default routes

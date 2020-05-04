@@ -2,24 +2,40 @@
   <copyright-layout>
     <template slot="body">
       <div class="content">
-        <van-row class="logo">
+        <van-row>
           <van-col :span="18" :offset="3">
-            <van-image width="120" :src="require('@/assets/logo.png')" />
+            <van-field v-model="formData.username" placeholder="请输入用户名" />
           </van-col>
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <van-field v-model="value" placeholder="请输入用户名" />
+            <n-sms-input v-model="formData.captcha" :placeholder="'请输入验证码'"></n-sms-input>
           </van-col>
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <van-field v-model="value" type="password" placeholder="请输入密码" />
+            <van-field v-model="formData.password" type="password" placeholder="请输入密码" />
+          </van-col>
+        </van-row>
+        <van-row>
+          <van-col :span="18" :offset="3">
+            <van-field
+              v-model="formData.password_confirmation"
+              type="password"
+              placeholder="请输入确认密码"
+            />
+          </van-col>
+        </van-row>
+        <van-row>
+          <van-col :span="18" :offset="3">
+            <van-checkbox-group class="width: 3px;" v-model="formData.is_agree" direction="horizontal">
+              <van-checkbox name="1" shape="square">复选框 1</van-checkbox>
+            </van-checkbox-group>
           </van-col>
         </van-row>
         <van-row class="button">
           <van-col :span="18" :offset="3">
-            <van-button round type="info">默认按钮</van-button>
+            <van-button round type="info" @click="handleSubmit">默认按钮</van-button>
           </van-col>
         </van-row>
         <van-row>
@@ -37,7 +53,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Button, Col, Row, Field, Image } from "vant";
+import { Button, Col, Row, Field, Image, CheckboxGroup, Checkbox } from "vant";
+import NSmsInput from "@/components/NSmsInput.vue";
 import CopyrightLayout from "@/components/CopyrightLayout.vue";
 
 @Component({
@@ -47,33 +64,42 @@ import CopyrightLayout from "@/components/CopyrightLayout.vue";
     [Row.name]: Row,
     [Field.name]: Field,
     [Image.name]: Image,
-    CopyrightLayout,
+    [CheckboxGroup.name]: CheckboxGroup,
+    [Checkbox.name]: Checkbox,
+    NSmsInput,
+    CopyrightLayout
   }
 })
 export default class LoginMobile extends Vue {
-  name = "RegisterIndex";
+  name = "Register";
 
-  data() {
-    return {
-      value: ""
-    };
+  formData = {
+    username: "",
+    captcha: "",
+    password: "",
+    password_confirmation: "",
+    is_agree: []
+  };
+
+  handleSubmit() {
+    console.log(this.formData);
   }
 }
 </script>
 
 <style lang="less" scoped>
 @container: container;
+@page: content;
 
 .@{container} {
   /deep/ &-body {
     display: flex;
     display: -webkit-flex; /* Safari */
     justify-content: center;
-    align-items: center;
   }
 }
 
-.content {
+.@{page} {
   width: 100%;
   margin-bottom: 30%;
   .logo {
@@ -106,6 +132,15 @@ export default class LoginMobile extends Vue {
   }
   a:hover {
     color: #1989fa;
+  }
+  .van-checkbox {
+    font-size: 0.8rem !important;
+  }
+  .van-checkbox__icon {
+    font-size: 0.8rem !important;
+  }
+  .van-checkbox__icon .van-icon {
+    width: 0.5em !important;
   }
 }
 </style>
