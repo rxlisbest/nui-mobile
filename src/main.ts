@@ -6,6 +6,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+import { mockXHR } from '../mock'
+mockXHR()
+
 new Vue({
   router,
   store,

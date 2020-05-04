@@ -1,9 +1,9 @@
 <template>
-  <div class="login">
-    <van-row class="login-body" align="center" justify="center">
+  <div class="container">
+    <van-row class="container-body" align="center" justify="center">
       <slot name="body"></slot>
     </van-row>
-    <van-row class="login-footer" align="center">
+    <van-row class="container-footer" align="center">
       <div>Copyright © 2020 nui-mobile.com</div>
     </van-row>
   </div>
@@ -19,12 +19,12 @@ import { Row } from "vant";
   }
 })
 export default class Layout extends Vue {
-  name = "Layout";
+  name = "CopyrightLayout";
 }
 </script>
 
 <style lang="less" scoped>
-@page: login;
+@page: container;
 @footerHeight: 50px;
 .@{page} {
   width: 100%;

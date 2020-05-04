@@ -14,7 +14,7 @@
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <n-sms-input></n-sms-input>
+            <van-field v-model="value" type="password" placeholder="请输入密码" />
           </van-col>
         </van-row>
         <van-row class="button">
@@ -38,7 +38,6 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Button, Col, Row, Field, Image } from "vant";
-import NSmsInput from "@/components/NSmsInput.vue";
 import CopyrightLayout from "@/components/CopyrightLayout.vue";
 
 @Component({
@@ -48,12 +47,11 @@ import CopyrightLayout from "@/components/CopyrightLayout.vue";
     [Row.name]: Row,
     [Field.name]: Field,
     [Image.name]: Image,
-    NSmsInput,
     CopyrightLayout,
   }
 })
 export default class LoginMobile extends Vue {
-  name = "LoginMobile";
+  name = "RegisterIndex";
 
   data() {
     return {
