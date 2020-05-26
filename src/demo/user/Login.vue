@@ -45,6 +45,7 @@ import { Button, Col, Row, Field, Image, Notify } from "vant";
 import CopyrightLayout from "@/components/CopyrightLayout.vue";
 import { userLogin } from "@/api/demo/user";
 import Joi from "@hapi/joi";
+import { mapActions, mapGetters } from "vuex";
 
 @Component({
   components: {
@@ -76,8 +77,8 @@ export default class LoginMobile extends Vue {
   async handleSubmit() {
     try {
       const value = await this.schema.validateAsync(this.formData);
-      const res = await userLogin(value);
-      console.log(res);
+      this.$store.dispatch("login", value);
+      this.$router.push({ name: "Register" });
     } catch (err) {
       Notify(err.message);
       // console.log(err.details)
