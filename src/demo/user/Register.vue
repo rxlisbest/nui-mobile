@@ -4,7 +4,7 @@
       <div class="content">
         <van-row>
           <van-col :span="18" :offset="3">
-            <van-field v-model="formData.username" placeholder="请输入用户名" />
+            <van-field v-model="formData.username" placeholder="请输入手机号" />
           </van-col>
         </van-row>
         <van-row>
@@ -28,8 +28,13 @@
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <van-checkbox-group class="width: 3px;" v-model="formData.is_agree" direction="horizontal">
-              <van-checkbox name="1" shape="square">复选框 1</van-checkbox>
+            <van-checkbox-group v-model="formData.is_agree" direction="horizontal">
+              <van-checkbox name="1" shape="square" v-model="formData.is_agree" icon-size="0.9rem">
+                <span class="agree-content">
+                  我已阅读并同意
+                  <router-link :to="'/'">隐私权保护声明</router-link>
+                </span>
+              </van-checkbox>
             </van-checkbox-group>
           </van-col>
         </van-row>
@@ -133,14 +138,9 @@ export default class LoginMobile extends Vue {
   a:hover {
     color: #1989fa;
   }
-  .van-checkbox {
-    font-size: 0.8rem !important;
-  }
-  .van-checkbox__icon {
-    font-size: 0.8rem !important;
-  }
-  .van-checkbox__icon .van-icon {
-    width: 0.5em !important;
+  .agree-content {
+    font-size: 0.8rem;
+    color: #999;
   }
 }
 </style>

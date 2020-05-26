@@ -1,11 +1,8 @@
 import { RouteConfig } from 'vue-router'
+import userRouter from './user'
 
 const routes: Array<RouteConfig> = [
-  {
-    path: '/index',
-    name: 'Index',
-    component: () => import('@/demo/index/Index.vue')
-  }
+  ...userRouter,
 ]
 
 export default routes

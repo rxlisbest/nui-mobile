@@ -9,29 +9,25 @@
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <van-field v-model="formData.username" placeholder="Please enter the username" />
+            <van-field v-model="value" placeholder="请输入用户名" />
           </van-col>
         </van-row>
         <van-row>
           <van-col :span="18" :offset="3">
-            <van-field
-              v-model="formData.password"
-              type="password"
-              placeholder="Please enter the password"
-            />
+            <van-field v-model="value" type="password" placeholder="请输入密码" />
           </van-col>
         </van-row>
         <van-row class="button">
           <van-col :span="18" :offset="3">
-            <van-button round type="info" @click="handleSubmit">Login</van-button>
+            <van-button round type="info" @click="handleSubmit">默认按钮</van-button>
           </van-col>
         </van-row>
         <van-row>
           <van-col :span="9" :offset="3" class="register">
-            <router-link :to="{name: 'Register'}">Register</router-link>
+            <router-link :to="{name: 'Register'}">还没账号，去注册</router-link>
           </van-col>
           <van-col :span="9" class="forget">
-            <router-link :to="{name: 'Login'}">Forget password?</router-link>
+            <router-link :to="{name: 'Login'}">忘记密码</router-link>
           </van-col>
         </van-row>
       </div>
@@ -41,10 +37,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Button, Col, Row, Field, Image, Notify } from "vant";
+import { Button, Col, Row, Field, Image } from "vant";
 import CopyrightLayout from "@/components/CopyrightLayout.vue";
 import { userLogin } from "@/api/demo/user";
-import Joi from "@hapi/joi";
 
 @Component({
   components: {
@@ -57,31 +52,18 @@ import Joi from "@hapi/joi";
   }
 })
 export default class LoginMobile extends Vue {
-  name = "Login";
+  name = "Index";
 
-  formData: object = {
-    username: "",
-    password: ""
-  };
+  data() {
+    return {
+      value: ""
+    };
+  }
 
-  schema = Joi.object({
-    username: Joi.string()
-      .alphanum()
-      .min(3)
-      .max(30)
-      .required(),
-    password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-  });
-
-  async handleSubmit() {
-    try {
-      const value = await this.schema.validateAsync(this.formData);
-      const res = await userLogin(value);
-      console.log(res);
-    } catch (err) {
-      Notify(err.message);
-      // console.log(err.details)
-    }
+  handleSubmit() {
+    userLogin({username: '', password: ''}).then(res => {
+      console.log(res)
+    });
   }
 }
 </script>
@@ -132,9 +114,6 @@ export default class LoginMobile extends Vue {
   }
   a:hover {
     color: #1989fa;
-  }
-  .van-cell {
-    padding: 10px 8px;
   }
 }
 </style>
