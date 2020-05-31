@@ -42,10 +42,9 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Button, Col, Row, Field, Image, Notify } from "vant";
-import CopyrightLayout from "@/components/CopyrightLayout.vue";
+import CopyrightLayout from "@/components/demo/CopyrightLayout.vue";
 import { userLogin } from "@/api/demo/user";
 import Joi from "@hapi/joi";
-import { mapActions, mapGetters } from "vuex";
 
 @Component({
   components: {
@@ -61,8 +60,8 @@ export default class LoginMobile extends Vue {
   name = "Login";
 
   formData: object = {
-    username: "",
-    password: ""
+    username: undefined,
+    password: undefined
   };
 
   schema = Joi.object({
@@ -76,9 +75,9 @@ export default class LoginMobile extends Vue {
 
   async handleSubmit() {
     try {
-      const value = await this.schema.validateAsync(this.formData);
-      this.$store.dispatch("login", value);
-      this.$router.push({ name: "Register" });
+      const formData = await this.schema.validateAsync(this.formData);
+      this.$store.dispatch("login", formData);
+      this.$router.push({ name: "DemoRegister" });
     } catch (err) {
       Notify(err.message);
       // console.log(err.details)

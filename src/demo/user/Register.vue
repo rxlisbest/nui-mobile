@@ -60,7 +60,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Button, Col, Row, Field, Image, CheckboxGroup, Checkbox } from "vant";
 import NSmsInput from "@/components/NSmsInput.vue";
-import CopyrightLayout from "@/components/CopyrightLayout.vue";
+import CopyrightLayout from "@/components/demo/CopyrightLayout.vue";
 
 @Component({
   components: {

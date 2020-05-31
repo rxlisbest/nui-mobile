@@ -13,4 +13,11 @@ const routes: Array<RouteConfig> = [
   }
 ]
 
-export default routes
+let demoRoutes: Array<RouteConfig> = []
+for (let route of routes) {
+  route.path = '/demo' + route.path
+  route.name = 'Demo' + route.name
+  demoRoutes.push(route)
+}
+
+export default demoRoutes

@@ -1,8 +1,8 @@
 import { userLogin } from "@/api/demo/user";
 
 const state = {
-  token: '',
-  headimgurl: ''
+  token: undefined,
+  headimgurl: undefined
 }
 
 const getters = {
